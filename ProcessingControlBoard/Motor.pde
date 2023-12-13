@@ -93,6 +93,8 @@ class Motor {
     stroke(255);
     noFill();
     rect(0, 0, 5, h * 0.5);
+    fill(255)
+    circle(0, h * 0.25, 10);
 
 
     pop();

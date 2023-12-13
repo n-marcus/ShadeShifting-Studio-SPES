@@ -9,10 +9,10 @@
 //EDIT STUFF HERE
 #define NODE_NUMBER 1
 #define DEFAULT_ACCELERATION 500
-float speedAcceleration = 0.01;
+float speedAcceleration = 0.1;
 
 // Set WiFi credentials
-#define WIFI_SSID "StudioSPES"
+#define WIFI_SSID "ShadeShifting"
 #define WIFI_PASS "FridayDance2020!"
 
 //STOP EDITING STUFF BELOW HERE
