@@ -1,152 +1,228 @@
 ArrayList<Motor> motors = new ArrayList<Motor>();
 int numMotors = 25;
 
-class Motor{ 
-    int index, x, y, w, h;
-    float angle;
-    
-    //mode 0 = static, 1 = clockwise, 2 = counter clockwise;
-    String[] modeNames = {"Static", "Clockwise", "Counter clockwise"};
-    int mode = 0;
-    
-    int borderColorBase = 100;
-    int borderColor = borderColorBase;
+class Motor {
+  int index, x, y, w, h;
+  float angle;
 
-    int maxSpeed = 5;
-    
-    float speed = 1;
-    
-    Motor(int _index, float _x, float _y) { 
-        index = _index;
-        x = int(_x);
-        y = int(_y);
-        w = 100;
-        h = 100;
-        
-        println("Created motor " + index + " at " + x + ", " + y);
-    }
-    
-    void update() { 
-        updateRotation();
-        drawMotor();
-        
-    }
-    
-    void updateRotation() { 
-        if (mode == 1) {
-            angle += speed;
-            angle %= 360;
-        }   
-    }
-    
-    void drawMotor() { 
-        push();
-        translate(x,y);
-        fill(255);
-        textSize(12);
-        
-        noFill();
-        stroke(borderColor);
-        strokeWeight(1);
-        rect(0,0,w,h);
-        if (borderColor > borderColorBase) {
-            borderColor -= 2;
-        }
-        
-        textAlign(CENTER);
-        text(index, w / 2, h * 0.1);
-        
-        text(modeNames[mode],   w / 2, h * 0.2);
-        
-        
-        if (mode == 0) {
-            text("Angle:" + nf(angle, 0, 2), w / 2, h * 0.9);
-        } else { 
-            text("Speed:" + nf(speed,0,2), w / 2, h * 0.9);
-        }
-        
-        translate(w / 2, h / 2);
-        rotate(radians(angle)); 
-        rectMode(CENTER); 
-        stroke(255);
-        rect(0,0, 5, h * 0.5);
-        
-        pop();
-    }
-    
-    void handleScroll(float scrollSpeed) { 
-        if (mode == 0) {
-            angle += scrollSpeed;
-            angle = angle % 360;
-        } else {
-            speed += scrollSpeed * 0.1;
+  //mode 0 = static, 1 = clockwise, 2 = counter clockwise;
+  String[] modeNames = {"Static", "Clockwise", "Counter clockwise"};
+  int mode = 0;
 
-            speed = max(-maxSpeed, min(speed, maxSpeed));
+  int borderColorBase = 100;
+  int borderColor = borderColorBase;
 
-        }
-    }
-    
-    void resetPosition() { 
-        angle = 0;
-        mode = 0;
+  int maxSpeed = 5;
 
+  float speed = 1;
+
+  boolean movingHome = false;
+
+  boolean haveToSendAngleAfterScroll = false;
+
+
+
+  Motor(int _index, float _x, float _y) {
+    index = _index;
+    x = int(_x);
+    y = int(_y);
+    w = 100;
+    h = 100;
+
+    println("Created motor " + index + " at " + x + ", " + y);
+  }
+
+  void update() {
+    updateRotation();
+    drawMotor();
+  }
+
+  void scrollEnded() {
+    if (haveToSendAngleAfterScroll) {
+      //if we detected an end to a scrolling motion and this motor has changed
+      //send the appropriate osc message
+      if (mode == 0) {
+        sendMotorAngleOSC();
+      } else if (mode == 1) {
+        sendMotorSpeedOSC();
+      }
     }
 
-    void handleClick() { 
-        borderColor = 255;
-        mode++;
-        mode %= 2;
+    //reset the flag
+    haveToSendAngleAfterScroll = false;
+  }
+
+  void updateRotation() {
+    if (mode == 1) {
+      angle += speed;
+      angle %= 360;
     }
+  }
+
+  void drawMotor() {
+    push();
+    translate(x, y);
+    fill(255);
+    textSize(12);
+
+    noFill();
+    stroke(borderColor);
+    strokeWeight(1);
+    rect(0, 0, w, h);
+    if (borderColor > borderColorBase) {
+      borderColor -= 2;
+    }
+
+    textAlign(CENTER);
+    text(index, w / 2, h * 0.1);
+
+    text(modeNames[mode], w / 2, h * 0.2);
+
+
+    if (mode == 0) {
+      text("Angle:" + nf(angle, 0, 2), w / 2, h * 0.9);
+    } else {
+      text("Speed:" + nf(speed, 0, 2), w / 2, h * 0.9);
+    }
+
+    translate(w / 2, h / 2);
+    rotate(radians(angle));
+    rectMode(CENTER);
+    stroke(255);
+    rect(0, 0, 5, h * 0.5);
+
+    pop();
+  }
+
+  void handleScroll(float scrollSpeed) {
+    scrolling = true;
+
+    haveToSendAngleAfterScroll = true;
+    if (scrollSpeed != 0) {
+      //println("Really scrolling");
+    }
+
+    if (mode == 0) {
+      angle += scrollSpeed;
+      angle = angle % 360;
+
+      //sendMotorAngleOSC();
+    } else {
+      speed += scrollSpeed * 0.1;
+      speed = max( -maxSpeed, min(speed, maxSpeed));
+    }
+  }
+
+  void resetPosition() {
+    angle = 0;
+    mode = 0;
+  }
+
+  void handleClick() {
+    borderColor = 255;
+    mode++;
+    mode %= 2;
+
+    sendOSCUpdate();
+  }
+
+  void resetToHome() {
+    angle = 0;
+    mode = 0;
+  }
+
+  void sendOSCUpdate() {
+    if (mode == 1) {
+      //if we switching to speed mode
+      sendMotorSpeedOSC();
+    } else if (mode == 0) {
+      sendMotorAngleOSC();
+    }
+  }
+
+  void sendMotorAngleOSC() {
+    String address = "/moveToAngle";
+    OscMessage myMessage = new OscMessage(address);
+
+    myMessage.add(index); /* add an int to the osc message */
+    myMessage.add(int(angle));
+    oscP5.send(myMessage, myRemoteLocation);
+    println("Sending message " + address + " " + index + " " + angle);
+  }
+
+  void sendMotorSpeedOSC() {
+    String address = "/setSpeedAndDirection";
+    OscMessage myMessage = new OscMessage(address);
+
+    myMessage.add(index); /* add an int to the osc message */
+    myMessage.add(int(speed * 1000));
+    oscP5.send(myMessage, myRemoteLocation);
+    println("Sending message " + address + " " + index + " " + speed * 100);
+  }
 }
 
 void updateMotors() {
-    for (int i = 0; i < numMotors; i ++) { 
-        Motor _motor = motors.get(i);
-        _motor.update();
-    }
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    _motor.update();
+  }
 }
 
-void setupMotors(float gridXPos, float gridYPos, float gridWidth, float gridHeight) { 
-    //make a grid of motors
-    for (int i = 0; i < numMotors; i++) { 
-        //calculate an x position
-        float xPos = ((i % 5) * gridWidth / 5);
-        xPos += (gridWidth / 5) / 4;
-        xPos += gridXPos;
-        
-        //calculate an y position
-        float yPos = floor(i / 5) * (gridHeight * 0.2);
-        yPos += gridYPos;
-        
-        //create themotor class 
-        motors.add(new Motor(i, xPos, yPos));
-    }
+void setupMotors(float gridXPos, float gridYPos, float gridWidth, float gridHeight) {
+  //make a grid of motors
+  for (int i = 0; i < numMotors; i++) {
+    //calculate an x position
+    float xPos = ((i % 5) * gridWidth / 5);
+    xPos+= (gridWidth / 5) / 4;
+    xPos+= gridXPos;
+
+    //calculate an y position
+    float yPos = floor(i / 5) * (gridHeight * 0.2);
+    yPos+= gridYPos;
+
+    //create themotor class
+    motors.add(new Motor(i, xPos, yPos));
+  }
 }
 
-void checkMotorsForScroll(float scrollSpeed) { 
-    for (int i = 0; i < numMotors; i ++) { 
-        
-        Motor _motor = motors.get(i);
-        if (mouseX > _motor.x && mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
-            _motor.handleScroll(scrollSpeed);
-        }
+void checkMotorsForScroll(float scrollSpeed) {
+  for (int i = 0; i < numMotors; i ++) {
+
+    Motor _motor = motors.get(i);
+    if (mouseX > _motor.x && mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
+      _motor.handleScroll(scrollSpeed);
     }
+  }
 }
 
-void checkMotorsForClick() { 
-    for (int i = 0; i < numMotors; i ++) { 
-        Motor _motor = motors.get(i);
-        if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
-            _motor.handleClick();
-        }
+void checkMotorsForClick() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
+      _motor.handleClick();
     }
+  }
 }
 
-void resetMotorAtMouse() { 
-    for (int i = 0; i < numMotors; i ++) { 
-        Motor _motor = motors.get(i);
-        if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
-            _motor.resetPosition();
-        }
+void resetMotorAtMouse() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
+      _motor.resetPosition();
     }
+  }
+}
+
+void resetAllMotorsToHome() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    _motor.resetToHome();
+  }
+}
+
+void sendMotorsScrollEndedEvent() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    _motor.scrollEnded();
+  }
 }
