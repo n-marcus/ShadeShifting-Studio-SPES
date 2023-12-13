@@ -7,7 +7,9 @@
 #include <elapsedMillis.h>
 
 //EDIT STUFF HERE
-#define NODE_NUMBER 1
+#define NODE_NUMBER 0
+
+
 #define DEFAULT_ACCELERATION 500
 float speedAcceleration = 0.1;
 

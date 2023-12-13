@@ -1,46 +1,36 @@
-int clickCount = 0;
-int doubleClickDelay = 250; // Adjust this value as needed (in milliseconds)
-int lastClickTime = 0;
-
-
 int lastScrollTime = 0;
 int scrollDelay = 500;
 boolean scrolling = false;
 boolean _scrolling = false;
 
+
 void mouseReleased() {
-
-  if (millis() - lastClickTime < doubleClickDelay) {
-    clickCount++;
-  } else {
-    clickCount = 1;
-  }
-
-  lastClickTime = millis();
-
-  if (clickCount == 1) {
-    // Single click action
-    println("Single click");
+  if (mouseButton == LEFT) {
+    println("Left-click");
     checkMotorsForClick();
-  } else if (clickCount == 2) {
-    // Double click action
-    println("Double click");
+  } else if (mouseButton == RIGHT && keyPressed && key == CODED && keyCode == SHIFT) {
+    // Right-click while holding Shift
+    println("Right-click with Shift");
+    homeMotorAtMouse();
+    // Add your action for right-click with Shift here
+  } else if (mouseButton == RIGHT) {
+    // Regular right-click action
+    println("Right-click");
     resetMotorAtMouse();
-    clickCount = 0; // Reset click count for the next set of clicks
   }
 }
 
 void checkScrolling() {
   if (millis() - lastScrollTime > scrollDelay) {
-    // Scrolling stopped 
+    // Scrolling stopped
     scrolling = false;
   }
-  
-  if (scrolling == false && scrolling != _scrolling) { 
+
+  if (scrolling == false && scrolling != _scrolling) {
     println("Scrolling stopped");
     sendMotorsScrollEndedEvent();
   }
-  
+
   _scrolling = scrolling;
 }
 

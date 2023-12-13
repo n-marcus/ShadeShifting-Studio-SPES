@@ -15,8 +15,13 @@ class ControlBar {
     //Create a button
     cp5.addButton("resetAllToHomeButton")
       .setPosition(50, (barHeight - bottomPadding) * 0.75)
-      .setSize(80, 30)
-      .setLabel("Reset to home");
+      .setSize(100, 30)
+      .setLabel("Reset all to home");
+
+    cp5.addButton("printScene")
+      .setPosition(150, (barHeight - bottomPadding) * 0.75)
+      .setSize(100, 30)
+      .setLabel("Print scene");
   }
 
 

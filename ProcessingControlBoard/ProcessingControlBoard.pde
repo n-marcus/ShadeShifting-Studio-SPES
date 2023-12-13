@@ -12,6 +12,7 @@ void setup() {
   setupOSC();
   setupControlBar();
   setupMotors(0, controlBarHeight, width, height - controlBarHeight );
+  setupSceneHashMap();
 }
 
 void draw() {
@@ -25,5 +26,3 @@ void draw() {
 
 
 }
-
-

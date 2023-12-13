@@ -7,8 +7,6 @@ void setupSerial() {
   Serial.println("- - - - - - - - - ");
 }
 
-
-
 void checkSerial() {
   if (Serial.available() > 0) {         // Check if data is available to read
     char receivedChar = Serial.read();  // Read the incoming byte

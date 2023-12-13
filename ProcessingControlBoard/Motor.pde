@@ -6,7 +6,7 @@ class Motor {
   float angle;
 
   //mode 0 = static, 1 = clockwise, 2 = counter clockwise;
-  String[] modeNames = {"Static", "Clockwise", "Counter clockwise"};
+  String[] modeNames = {"angle", "speed"};
   int mode = 0;
 
   int borderColorBase = 100;
@@ -88,12 +88,12 @@ class Motor {
 
 
     translate(w / 2, h / 2);
-    rotate(radians(angle));
+    rotate(radians(-angle));
     rectMode(CENTER);
     stroke(255);
     noFill();
     rect(0, 0, 5, h * 0.5);
-    fill(255)
+    fill(255);
     circle(0, h * 0.25, 10);
 
 
@@ -131,8 +131,11 @@ class Motor {
   }
 
   void resetPosition() {
+    println("Motor " + index + " got reset");
     angle = 0;
     mode = 0;
+    
+    sendOSCUpdate();
   }
 
   void handleClick() {
@@ -146,6 +149,8 @@ class Motor {
   void resetToHome() {
     angle = 0;
     mode = 0;
+    
+    sendMotorHomeOSC();
   }
 
   void sendOSCUpdate() {
@@ -155,6 +160,30 @@ class Motor {
     } else if (mode == 0) {
       sendMotorAngleOSC();
     }
+
+    //get the name of the mode
+    String modeString = modeNames[mode];
+    //get the value, default to angle
+    float value = angle;
+    if (mode == 1) {
+      //if we are in speed mode, get the speed
+      value = speed * 100.;
+    }
+
+    //save it to the hashmap
+    editMotorData(currentScene, index, modeString, value);
+  }
+
+  void sendMotorHomeOSC() {
+    String address = "/home";
+    OscMessage myMessage = new OscMessage(address);
+
+    myMessage.add(index); /* add an int to the osc message */
+    oscP5.send(myMessage, myRemoteLocation);
+    println("Sending message " + address + " " + index);
+
+
+    OSCIndicatorColor = 255;
   }
 
   void sendMotorAngleOSC() {
@@ -165,6 +194,8 @@ class Motor {
     myMessage.add(int(angle));
     oscP5.send(myMessage, myRemoteLocation);
     println("Sending message " + address + " " + index + " " + angle);
+
+
     OSCIndicatorColor = 255;
   }
 
@@ -228,6 +259,15 @@ void resetMotorAtMouse() {
     Motor _motor = motors.get(i);
     if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
       _motor.resetPosition();
+    }
+  }
+}
+
+void homeMotorAtMouse() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    if (mouseX > _motor.x &&  mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
+      _motor.resetToHome();
     }
   }
 }

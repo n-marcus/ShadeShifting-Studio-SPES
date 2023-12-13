@@ -3,7 +3,7 @@ void checkOSC() {
   int size = Udp.parsePacket();
 
   if (size > 0) {
-    Serial.print("There is something in the osc buffer...");
+    Serial.println("There is something in the osc buffer...");
     while (size--) {
       msg.fill(Udp.read());
     }
@@ -43,9 +43,9 @@ void setSpeedAndDirectionOSC(OSCMessage &msg) {
 void moveToAngleOSC(OSCMessage &msg) {
   int node = msg.getInt(0);
   int angle = msg.getInt(1);
-  Serial.println("Got set angle command for node " + String(node) + " from OSC with angle " + String(angle));
 
   if (node == NODE_NUMBER || node == -1) {
+    Serial.println("Got set angle command for node " + String(node) + " from OSC with angle " + String(angle));
     // Get the current position of the motor
     int currentPosition = stepper.currentPosition();
 
@@ -77,6 +77,13 @@ void moveToAngleOSC(OSCMessage &msg) {
 }
 
 void moveToHomeOSC(OSCMessage &msg) {
-  Serial.println("Got OSC message to move to home");
-  homing();
+  int node = msg.getInt(0);
+  Serial.println("Got set home command for node " + String(node) + " from OSC");
+
+  if (node == NODE_NUMBER || node == -1) {
+    Serial.println("Starting homing process");
+    homing();
+  } else {
+    Serial.println("Got set home command but not for me, for node " + String(node));
+  }
 }
