@@ -3,13 +3,13 @@ void checkOSC() {
   int size = Udp.parsePacket();
 
   if (size > 0) {
-    Serial.println("There is something in the osc buffer...");
+    DEBUG_PRINT("There is something in the osc buffer...");
     while (size--) {
       msg.fill(Udp.read());
     }
     if (!msg.hasError()) {
       sinceOSC = 0;
-      Serial.println("Received OSC message succesfully:");
+      DEBUG_PRINT("Received OSC message succesfully:");
       checkLED();
       msg.dispatch("/moveToAngle", moveToAngleOSC);
       msg.dispatch("/setSpeedAndDirection", setSpeedAndDirectionOSC);
@@ -19,7 +19,7 @@ void checkOSC() {
     } else {
       error = msg.getError();
       Serial.print("Error receiving OSC message: ");
-      Serial.println(error);
+      DEBUG_PRINT(error);
     }
   }
 }
@@ -27,7 +27,7 @@ void checkOSC() {
 void setSpeedAndDirectionOSC(OSCMessage &msg) {
   int node = msg.getInt(0);
   int speed = msg.getInt(1);
-  Serial.println("Got set speed command for node " + String(node) + " from OSC with speed " + String(speed));
+  DEBUG_PRINT("Got set speed command for node " + String(node) + " from OSC with speed " + String(speed));
   //if it is for this node, or for all nodes
   if (node == NODE_NUMBER || node == -1) {
     targetSpeed = speed;
@@ -36,7 +36,7 @@ void setSpeedAndDirectionOSC(OSCMessage &msg) {
     motorRunning = true;
     motorRunningSpeed = true;
   } else {
-    Serial.println("Got move to angle osc message but it was not meant for me, was meant for: " + String(node));
+    DEBUG_PRINT("Got move to angle osc message but it was not meant for me, was meant for: " + String(node));
   }
 }
 
@@ -45,14 +45,14 @@ void moveToAngleOSC(OSCMessage &msg) {
   int angle = msg.getInt(1);
 
   if (node == NODE_NUMBER || node == -1) {
-    Serial.println("Got set angle command for node " + String(node) + " from OSC with angle " + String(angle));
+    DEBUG_PRINT("Got set angle command for node " + String(node) + " from OSC with angle " + String(angle));
     // Get the current position of the motor
     int currentPosition = stepper.currentPosition();
 
     // Calculate the current angle
     float currentCirclesMade = float(currentPosition) / float(stepsNeededForCircle);
     float currentAngle = currentPosition % stepsNeededForCircle;
-    Serial.println("Current circles made is " + String(currentCirclesMade) + " modulo is " + currentAngle);
+    DEBUG_PRINT("Current circles made is " + String(currentCirclesMade) + " modulo is " + currentAngle);
 
     // Calculate the shortest distance to the target angle
     int targetPosition = stepsPerDegree * angle;
@@ -72,18 +72,18 @@ void moveToAngleOSC(OSCMessage &msg) {
     motorRunningSpeed = false;
     currentSpeed = 0;
   } else {
-    Serial.println("Got move to angle osc message but it was not meant for me, was meant for: " + String(node));
+    DEBUG_PRINT("Got move to angle osc message but it was not meant for me, was meant for: " + String(node));
   }
 }
 
 void moveToHomeOSC(OSCMessage &msg) {
   int node = msg.getInt(0);
-  Serial.println("Got set home command for node " + String(node) + " from OSC");
+  DEBUG_PRINT("Got set home command for node " + String(node) + " from OSC");
 
   if (node == NODE_NUMBER || node == -1) {
-    Serial.println("Starting homing process");
+    DEBUG_PRINT("Starting home");
     homing();
   } else {
-    Serial.println("Got set home command but not for me, for node " + String(node));
+    DEBUG_PRINT("Got set home command but not for me, for node " + String(node));
   }
 }

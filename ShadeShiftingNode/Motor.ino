@@ -22,7 +22,7 @@ void runMotor() {
 }
 
 void homing() {
-  Serial.println("Starting home finding procedure...");
+  DEBUG_PRINT("Starting home finding procedure...");
 
   stepper.setAcceleration(5000);
   stepper.moveTo(stepper.currentPosition() + stepsNeededForCircle);
@@ -41,8 +41,8 @@ void homing() {
   stepper.stop();
   motorRunning = false;
 
-  Serial.println("Found home!");
-  Serial.println("Position before reset = " + String(stepper.currentPosition()));
+  DEBUG_PRINT("Found home!");
+  DEBUG_PRINT("Position before reset = " + String(stepper.currentPosition()));
   stepper.setCurrentPosition(0);
-  Serial.println("Position after reset = " + String(stepper.currentPosition()));
+  DEBUG_PRINT("Position after reset = " + String(stepper.currentPosition()));
 }

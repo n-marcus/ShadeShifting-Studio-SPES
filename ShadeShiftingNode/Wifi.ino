@@ -1,28 +1,27 @@
 
 void setupWifi() {
   // Connect to WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(WIFI_SSID);
+  DEBUG_PRINT();
+  DEBUG_PRINT();
+  Serial.print("Connecting to " + String(WIFI_SSID));
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("");
+  DEBUG_PRINT("");
 
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  DEBUG_PRINT("WiFi connected");
+  DEBUG_PRINT("IP address: ");
+  DEBUG_PRINT(WiFi.localIP());
 
-  Serial.println("Starting UDP");
+  DEBUG_PRINT("Starting UDP");
   Udp.begin(localPort);
-  Serial.print("Local port: ");
+  DEBUG_PRINT("Local port: ");
 #ifdef ESP32
-  Serial.println(localPort);
+  DEBUG_PRINT(localPort);
 #else
-  Serial.println(Udp.localPort());
+  DEBUG_PRINT(Udp.localPort());
 #endif
 }

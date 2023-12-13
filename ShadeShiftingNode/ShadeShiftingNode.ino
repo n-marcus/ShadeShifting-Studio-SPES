@@ -7,8 +7,14 @@
 #include <elapsedMillis.h>
 
 //EDIT STUFF HERE
-#define NODE_NUMBER 0
+#define NODE_NUMBER 1
 
+#define DEBUG
+#ifdef DEBUG
+#define DEBUG_PRINT(x) Serial.println(x)
+#else
+#define DEBUG_PRINT(x)
+#endif
 
 #define DEFAULT_ACCELERATION 500
 float speedAcceleration = 0.1;
