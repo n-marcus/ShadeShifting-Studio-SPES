@@ -18,7 +18,9 @@ class Motor {
 
   boolean movingHome = false;
 
-  boolean haveToSendAngleAfterScroll = false;
+  boolean haveToSendOSCAfterScroll = false;
+
+  int OSCIndicatorColor = 0;
 
 
 
@@ -38,18 +40,14 @@ class Motor {
   }
 
   void scrollEnded() {
-    if (haveToSendAngleAfterScroll) {
+    if (haveToSendOSCAfterScroll) {
       //if we detected an end to a scrolling motion and this motor has changed
       //send the appropriate osc message
-      if (mode == 0) {
-        sendMotorAngleOSC();
-      } else if (mode == 1) {
-        sendMotorSpeedOSC();
-      }
+      sendOSCUpdate();
     }
 
     //reset the flag
-    haveToSendAngleAfterScroll = false;
+    haveToSendOSCAfterScroll = false;
   }
 
   void updateRotation() {
@@ -85,28 +83,45 @@ class Motor {
       text("Speed:" + nf(speed, 0, 2), w / 2, h * 0.9);
     }
 
+
+    drawOSCIndicator();
+
+
     translate(w / 2, h / 2);
     rotate(radians(angle));
     rectMode(CENTER);
     stroke(255);
+    noFill();
     rect(0, 0, 5, h * 0.5);
+
 
     pop();
   }
 
+  void drawOSCIndicator() {
+
+    if (OSCIndicatorColor > 0) {
+      OSCIndicatorColor -= 4;
+    }
+
+    if (OSCIndicatorColor < 0) {
+      OSCIndicatorColor = 0;
+    }
+    if (haveToSendOSCAfterScroll) {
+      fill(0, 0, 255);
+    } else {
+      fill(OSCIndicatorColor);
+    }
+    circle(10, 10, 10);
+  }
+
   void handleScroll(float scrollSpeed) {
     scrolling = true;
-
-    haveToSendAngleAfterScroll = true;
-    if (scrollSpeed != 0) {
-      //println("Really scrolling");
-    }
+    haveToSendOSCAfterScroll = true;
 
     if (mode == 0) {
       angle += scrollSpeed;
       angle = angle % 360;
-
-      //sendMotorAngleOSC();
     } else {
       speed += scrollSpeed * 0.1;
       speed = max( -maxSpeed, min(speed, maxSpeed));
@@ -148,6 +163,7 @@ class Motor {
     myMessage.add(int(angle));
     oscP5.send(myMessage, myRemoteLocation);
     println("Sending message " + address + " " + index + " " + angle);
+    OSCIndicatorColor = 255;
   }
 
   void sendMotorSpeedOSC() {
@@ -158,6 +174,7 @@ class Motor {
     myMessage.add(int(speed * 1000));
     oscP5.send(myMessage, myRemoteLocation);
     println("Sending message " + address + " " + index + " " + speed * 100);
+    OSCIndicatorColor = 255;
   }
 }
 
@@ -217,6 +234,7 @@ void resetAllMotorsToHome() {
   for (int i = 0; i < numMotors; i ++) {
     Motor _motor = motors.get(i);
     _motor.resetToHome();
+    _motor.OSCIndicatorColor = 255;
   }
 }
 
