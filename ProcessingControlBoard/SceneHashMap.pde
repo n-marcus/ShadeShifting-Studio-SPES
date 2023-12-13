@@ -27,6 +27,8 @@ void setupSceneHashMap() {
     scenes.add(scene);
   }
 
+
+  scenes = loadScenesFromFile();
   //print the current scene
   printScene();
 }
@@ -94,8 +96,8 @@ void setScene(int sceneIndex) {
         _motor.speed = motorData.value / 100.;
         _motor.mode = 1;
       }
-      
-      //tell the motor to send its new state over osc 
+
+      //tell the motor to send its new state over osc
       _motor.sendOSCUpdate();
     }
   }
@@ -127,7 +129,7 @@ void saveScenesToFile() {
   println("Saving scene to JSON");
   JSONObject json = new JSONObject();
 
-  for (int i = 0; i < scenes.size(); i++) {
+  for (int i = scenes.size() - 1; i >= 0; i--) {
     JSONObject sceneJSON = new JSONObject();
     HashMap<String, MotorSceneData> scene = scenes.get(i);
 
