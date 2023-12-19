@@ -1,3 +1,7 @@
+elapsedMillis timeSinceLastHeartbeat;
+int heartBeatInterval = 2000;
+
+
 void checkOSC() {
   OSCMessage msg;
   int size = Udp.parsePacket();
@@ -10,7 +14,6 @@ void checkOSC() {
     if (!msg.hasError()) {
       sinceOSC = 0;
       DEBUG_PRINT("Received OSC message succesfully:");
-      checkLED();
       msg.dispatch("/moveToAngle", moveToAngleOSC);
       msg.dispatch("/setSpeedAndDirection", setSpeedAndDirectionOSC);
       msg.dispatch("/home", moveToHomeOSC);
@@ -30,6 +33,9 @@ void setSpeedAndDirectionOSC(OSCMessage &msg) {
   DEBUG_PRINT("Got set speed command for node " + String(node) + " from OSC with speed " + String(speed));
   //if it is for this node, or for all nodes
   if (node == NODE_NUMBER || node == -1) {
+    leds[0] = CRGB::Purple;
+    FastLED.show();
+    delay(10);
     targetSpeed = speed;
     // currentSpeed = 0;
     // stepper.setSpeed(speed);  // Set the speed of the motor (adjust as needed)
@@ -46,6 +52,13 @@ void moveToAngleOSC(OSCMessage &msg) {
 
   if (node == NODE_NUMBER || node == -1) {
     DEBUG_PRINT("Got set angle command for node " + String(node) + " from OSC with angle " + String(angle));
+
+    //show blue after osc message
+    leds[0] = CRGB::Blue;
+    FastLED.show();
+    delay(10);
+
+
     // Get the current position of the motor
     int currentPosition = stepper.currentPosition();
 
@@ -81,9 +94,38 @@ void moveToHomeOSC(OSCMessage &msg) {
   DEBUG_PRINT("Got set home command for node " + String(node) + " from OSC");
 
   if (node == NODE_NUMBER || node == -1) {
+    //show yellow led when starting home procedure
+    leds[0] = CRGB::Yellow;
+    FastLED.show();
+    delay(10);
+
     DEBUG_PRINT("Starting home");
-    homing();
+    returnMotorToHome();
   } else {
     DEBUG_PRINT("Got set home command but not for me, for node " + String(node));
   }
+}
+
+void sendOSCHeartBeat() {
+  if (timeSinceLastHeartbeat > heartBeatInterval) {
+    leds[0] = CRGB::BlueViolet;
+    FastLED.show();
+    // Serial.println("Sending heartbeat for node " + String(NODE_NUMBER));
+    OSCMessage msg("/heartbeat");
+    msg.add(NODE_NUMBER);
+    Udp.beginPacket(outIp, outPort);
+    msg.send(Udp);
+    Udp.endPacket();
+    msg.empty();
+    timeSinceLastHeartbeat = 0;
+  }
+}
+
+void sendHomeSignalOSC() {
+  OSCMessage msg("/reachedHome");
+  msg.add(NODE_NUMBER);
+  Udp.beginPacket(outIp, outPort);
+  msg.send(Udp);
+  Udp.endPacket();
+  msg.empty();
 }

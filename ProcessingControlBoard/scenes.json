@@ -2360,11 +2360,11 @@
     },
     "Motor1": {
       "mode": "angle",
-      "value": 24.5
+      "value": -41
     },
     "Motor0": {
       "mode": "angle",
-      "value": 0
+      "value": -16.5
     },
     "Motor20": {
       "mode": "angle",
@@ -2465,8 +2465,8 @@
       "value": 100
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",

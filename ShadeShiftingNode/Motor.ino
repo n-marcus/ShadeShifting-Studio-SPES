@@ -21,8 +21,15 @@ void runMotor() {
   }
 }
 
-void homing() {
+void returnMotorToHome() {
   DEBUG_PRINT("Starting home finding procedure...");
+
+
+  //show green led when found home
+  // leds[0] = CRGB::Yellow;
+  // FastLED.show();
+  // delay(10);
+  Serial.println("LED should be yellow now");
 
   stepper.setAcceleration(5000);
   stepper.moveTo(stepper.currentPosition() + stepsNeededForCircle);
@@ -32,17 +39,19 @@ void homing() {
   while (digitalRead(HALSensorPin) == 1) {
     stepper.run();
     delay(1);
-    // if (loopIndex % 100 == 0) {
-    //   //check every 100 loops if we reached the sensor
-    //   reachedHome = !digitalRead(HALSensorPin);
-    // }
-    // loopIndex++;
   }
   stepper.stop();
   motorRunning = false;
+
+  //show green led when found home
+  leds[0] = CRGB::Green;
+  FastLED.show();
+  delay(10);
 
   DEBUG_PRINT("Found home!");
   DEBUG_PRINT("Position before reset = " + String(stepper.currentPosition()));
   stepper.setCurrentPosition(0);
   DEBUG_PRINT("Position after reset = " + String(stepper.currentPosition()));
+
+  sendHomeSignalOSC();
 }

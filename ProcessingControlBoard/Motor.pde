@@ -22,6 +22,7 @@ class Motor {
 
   int OSCIndicatorColor = 0;
 
+  int heartBeatFill = 0;
 
 
   Motor(int _index, float _x, float _y) {
@@ -85,7 +86,7 @@ class Motor {
 
 
     drawOSCIndicator();
-
+    drawHeartBeat();
 
     translate(w / 2, h / 2);
     rotate(radians(-angle));
@@ -114,8 +115,30 @@ class Motor {
     } else {
       fill(OSCIndicatorColor);
     }
+    circle(w - 10, 10, 10);
+  }
+
+  void drawHeartBeat() {
+    //draw and fade the heartbeat
+    if (heartBeatFill > 0) {
+      //check if we need to fade
+      heartBeatFill -= 2;
+    } else {
+      heartBeatFill = 0;
+    }
+
+    //draw heartbeat
+    fill(heartBeatFill * 0.5, heartBeatFill * 0.5, heartBeatFill);
     circle(10, 10, 10);
   }
+
+  void receivedHeartBeat() {
+    heartBeatFill = 255;
+  }
+  
+  void receivedHomeSignal() { 
+    
+  }  
 
   void handleScroll(float scrollSpeed) {
     scrolling = true;
@@ -134,7 +157,7 @@ class Motor {
     println("Motor " + index + " got reset");
     angle = 0;
     mode = 0;
-    
+
     sendOSCUpdate();
   }
 
@@ -149,7 +172,7 @@ class Motor {
   void resetToHome() {
     angle = 0;
     mode = 0;
-    
+
     sendMotorHomeOSC();
   }
 
@@ -237,7 +260,6 @@ void setupMotors(float gridXPos, float gridYPos, float gridWidth, float gridHeig
 
 void checkMotorsForScroll(float scrollSpeed) {
   for (int i = 0; i < numMotors; i ++) {
-
     Motor _motor = motors.get(i);
     if (mouseX > _motor.x && mouseX <  _motor.x +  _motor.w && mouseY >  _motor.y && mouseY <  _motor.y +  _motor.h) {
       _motor.handleScroll(scrollSpeed);

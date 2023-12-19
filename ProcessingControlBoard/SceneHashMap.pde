@@ -28,7 +28,7 @@ void setupSceneHashMap() {
   }
 
 
-  scenes = loadScenesFromFile();
+//  scenes = loadScenesFromFile();
   //print the current scene
   printScene();
 }

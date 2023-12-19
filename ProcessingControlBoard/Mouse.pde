@@ -8,9 +8,9 @@ void mouseReleased() {
   if (mouseButton == LEFT) {
     println("Left-click");
     checkMotorsForClick();
-  } else if (mouseButton == RIGHT && keyPressed && key == CODED && keyCode == SHIFT) {
-    // Right-click while holding Shift
-    println("Right-click with Shift");
+  } else if (mouseButton == RIGHT && keyPressed && key == CODED && keyCode == 157) {
+    // Right-click while holding cmd
+    println("Right-click with cmd");
     homeMotorAtMouse();
     // Add your action for right-click with Shift here
   } else if (mouseButton == RIGHT) {
@@ -39,4 +39,8 @@ void mouseWheel(MouseEvent event) {
   scrolling = true;
   float scrollSpeed = event.getCount();
   checkMotorsForScroll(scrollSpeed * 0.5);
+}
+
+void keyPressed() {
+  println(keyCode);
 }

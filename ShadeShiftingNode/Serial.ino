@@ -38,7 +38,7 @@ void checkSerial() {
     if (receivedChar == 'h') {         // Check if the received character is 'e'
       DEBUG_PRINT("Received 'h'");  // Send a confirmation message
       //Return to home
-      homing();
+      returnMotorToHome();
       motorRunning = true;
     }
 
