@@ -2363,8 +2363,8 @@
       "value": 0
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",
@@ -2380,11 +2380,11 @@
     },
     "Motor23": {
       "mode": "angle",
-      "value": 0
+      "value": 64
     },
     "Motor24": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor9": {
       "mode": "angle",
@@ -2404,19 +2404,19 @@
     },
     "Motor11": {
       "mode": "angle",
-      "value": 0
+      "value": 48
     },
     "Motor6": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor12": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor5": {
       "mode": "angle",
-      "value": 0
+      "value": 57
     },
     "Motor13": {
       "mode": "angle",
@@ -2436,11 +2436,11 @@
     },
     "Motor17": {
       "mode": "angle",
-      "value": 0
+      "value": 43
     },
     "Motor18": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor19": {
       "mode": "angle",
@@ -2449,8 +2449,8 @@
   },
   "scene0": {
     "Motor4": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor3": {
       "mode": "angle",
@@ -2458,19 +2458,19 @@
     },
     "Motor2": {
       "mode": "angle",
-      "value": 82.5
+      "value": 0
     },
     "Motor1": {
       "mode": "angle",
-      "value": 92
+      "value": 0
     },
     "Motor0": {
       "mode": "angle",
-      "value": 70.5
+      "value": 0
     },
     "Motor20": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor21": {
       "mode": "angle",
@@ -2489,40 +2489,40 @@
       "value": 0
     },
     "Motor9": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor8": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor10": {
       "mode": "angle",
       "value": 0
     },
     "Motor7": {
-      "mode": "speed",
-      "value": 500
+      "mode": "angle",
+      "value": 0
     },
     "Motor11": {
       "mode": "angle",
       "value": 0
     },
     "Motor6": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
       "mode": "speed",
       "value": 100
     },
-    "Motor13": {
+    "Motor5": {
       "mode": "angle",
       "value": 0
+    },
+    "Motor13": {
+      "mode": "speed",
+      "value": 100
     },
     "Motor14": {
       "mode": "angle",
@@ -2533,8 +2533,8 @@
       "value": 0
     },
     "Motor16": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor17": {
       "mode": "angle",

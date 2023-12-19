@@ -9,7 +9,7 @@ void setupWifi() {
   bool LEDOn = true;
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    LEDOn = !LedOn;
+    LEDOn = !LEDOn;
     digitalWrite(LED_BUILTIN, HIGH);
     Serial.print(".");
   }

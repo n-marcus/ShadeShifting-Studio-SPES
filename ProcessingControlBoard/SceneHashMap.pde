@@ -64,6 +64,7 @@ void editMotorData(int sceneIndex, int motorIndex, String newMode, float newValu
       motor.value = newValue;
       if (sceneIndex == 0) {
         println("Updated Mode of " + motorKey + " in Scene " + sceneIndex + ": " + motor.mode + " " + motor.value);
+        println(motor.mode, motor.value);
       }
     } else {
       println("Motor key not found in the scene.");
@@ -91,13 +92,17 @@ void setScene(int sceneIndex) {
 
       //check which mode this motor should be in
       //and set the appropriate values
-      if (motorData.mode == "angle") {
+      //println("Set scene thinks motor " + i + " should be set to " + motorData.mode + " " + motorData.value);
+      //println("is angle " + (motorData.mode == "angle"));
+      if (motorData.mode.equals("angle")) {
         _motor.angle = motorData.value;
         _motor.mode = 0;
-      } else if (motorData.mode == "speed") {
+      } else if (motorData.mode.equals("speed")) {
         _motor.speed = motorData.value / 100.;
         _motor.mode = 1;
       }
+      
+      //println("Set scene set Motor " + i + " to " + _motor.mode + " " + _motor.angle + " " + _motor.speed);
 
       //tell the motor to send its new state over osc
       _motor.sendOSCUpdate();
@@ -197,7 +202,7 @@ void loadScenesFromFile(String filePath) {
   }
 
   //set all motors to the current scene in the new hasmap
-  //setScene(currentScene);
+  setScene(currentScene);
   printScene();
   
 }
