@@ -50,7 +50,7 @@ void gotHomeSignal(int node) {
 }
 
 void gotHeartBeat(int node) {
-  println("Got heartbeat from "+ node);
+  //println("Got heartbeat from "+ node);
   try {
     Motor _motor = motors.get(node);
     _motor.receivedHeartBeat();

@@ -10,7 +10,7 @@
 
 
 //EDIT STUFF HERE
-#define NODE_NUMBER 1
+#define NODE_NUMBER 2
 
 // #define DEBUG
 #ifdef DEBUG

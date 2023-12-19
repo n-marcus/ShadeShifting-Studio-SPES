@@ -1,9 +1,9 @@
-#define DATA_PIN 2
+#define DATA_PIN 0
 #define LED_TYPE WS2811
 #define COLOR_ORDER RGB
 #define NUM_LEDS 1
 CRGB leds[NUM_LEDS];
-#define BRIGHTNESS 2
+#define BRIGHTNESS 15
 
 int cycleCount = 0;
 

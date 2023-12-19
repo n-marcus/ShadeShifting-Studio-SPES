@@ -36,7 +36,12 @@ class ControlBar {
     cp5.addButton("saveScenesButton")
       .setPosition(400, (barHeight - bottomPadding) * 0.75)
       .setSize(90, 30)
-      .setLabel("Save scene");
+      .setLabel("Save scenes");
+
+    cp5.addButton("loadScenesButton")
+      .setPosition(500, (barHeight - bottomPadding) * 0.75)
+      .setSize(90, 30)
+      .setLabel("Load scenes");
   }
 
 
@@ -74,7 +79,12 @@ void updateControlBar() {
   controlBar.update();
 }
 
+void loadScenesButton() {
+  println("Load scenes button pressed");
+  selectInput("Select JSON file:", "fileSelected");
+}
+
 void saveScenesButton() {
   println("Save scene button pressed");
- saveScenesToFile(); 
+  saveScenesToFile();
 }

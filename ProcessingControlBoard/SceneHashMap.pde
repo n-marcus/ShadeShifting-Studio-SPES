@@ -28,7 +28,7 @@ void setupSceneHashMap() {
   }
 
 
-//  scenes = loadScenesFromFile();
+  //  scenes = loadScenesFromFile();
   //print the current scene
   printScene();
 }
@@ -62,7 +62,9 @@ void editMotorData(int sceneIndex, int motorIndex, String newMode, float newValu
       //update the values
       motor.mode = newMode;
       motor.value = newValue;
-      println("Updated Mode of " + motorKey + " in Scene " + sceneIndex + ": " + motor.mode + " " + motor.value);
+      if (sceneIndex == 0) {
+        println("Updated Mode of " + motorKey + " in Scene " + sceneIndex + ": " + motor.mode + " " + motor.value);
+      }
     } else {
       println("Motor key not found in the scene.");
     }
@@ -144,4 +146,58 @@ void saveScenesToFile() {
   }
 
   saveJSONObject(json, "scenes.json");
+}
+
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("File selection was canceled");
+  } else {
+    String filePath = selection.getAbsolutePath();
+    loadScenesFromFile(filePath); // Pass the selected file path to load the JSON
+  }
+}
+
+void loadScenesFromFile(String filePath) {
+  JSONObject json = loadJSONObject(filePath); // Load the selected JSON file
+  if (json == null) {
+    println("Error: Could not load JSON file.");
+    return;
+  }
+
+  for (int scene = 0; scene < numScenes; scene++) {
+    String sceneKey = "scene" + scene;
+    println("Loading scene " + scene);
+    if (json.hasKey(sceneKey)) {
+      JSONObject sceneJSON = json.getJSONObject(sceneKey);
+      if (sceneJSON != null) {
+        //HashMap<String, MotorSceneData> scene = scenes.get(scene);
+        //print(sceneJSON.keys());
+
+        for (int motor = 0; motor < sceneJSON.keys().size(); motor++ ) {
+          String motorString = "Motor" + motor;
+
+          //println(sceneJSON.get(motorString).getClass());
+
+          //this is the object that contains the info for this motor in this scene
+          JSONObject motorObject = sceneJSON.getJSONObject(motorString);
+
+          //println(motorObject);
+          String motorMode = motorObject.getString("mode");
+          float motorValue = motorObject.getFloat("value");
+
+          if (scene == 0) {
+            println("Scene " + scene+ ": motor" + motor + ": ");
+            println("Mode: " + motorMode + " ,value: " + motorValue);
+          }
+          //save to local memory
+          editMotorData(scene, motor, motorMode, motorValue);
+        }
+      }
+    }
+  }
+
+  //set all motors to the current scene in the new hasmap
+  //setScene(currentScene);
+  printScene();
+  
 }

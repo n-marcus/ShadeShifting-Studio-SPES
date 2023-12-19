@@ -122,10 +122,13 @@ void sendOSCHeartBeat() {
 }
 
 void sendHomeSignalOSC() {
-  OSCMessage msg("/reachedHome");
-  msg.add(NODE_NUMBER);
-  Udp.beginPacket(outIp, outPort);
-  msg.send(Udp);
-  Udp.endPacket();
-  msg.empty();
+  for (int i = 0; i < 3; i++) {
+    //do this 3 times just to be sure it gets accross
+    OSCMessage msg("/reachedHome");
+    msg.add(NODE_NUMBER);
+    Udp.beginPacket(outIp, outPort);
+    msg.send(Udp);
+    Udp.endPacket();
+    msg.empty();
+  }
 }

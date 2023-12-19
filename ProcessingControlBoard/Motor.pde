@@ -23,6 +23,7 @@ class Motor {
   int OSCIndicatorColor = 0;
 
   int heartBeatFill = 0;
+  int homeFill = 0;
 
 
   Motor(int _index, float _x, float _y) {
@@ -86,6 +87,7 @@ class Motor {
 
 
     drawOSCIndicator();
+    drawHomeIndicator();
     drawHeartBeat();
 
     translate(w / 2, h / 2);
@@ -135,10 +137,28 @@ class Motor {
   void receivedHeartBeat() {
     heartBeatFill = 255;
   }
-  
-  void receivedHomeSignal() { 
-    
-  }  
+
+  void drawHomeIndicator() {
+    if (homeFill > 0) {
+      homeFill -= 2;
+    } else {
+      homeFill = 0;
+    }
+
+    //draw home indicator
+    fill(0, homeFill, 0);
+
+    if (movingHome) {
+      fill(255, 100, 0);
+    }
+    circle(10, h*0.75, 10);
+  }
+
+  void receivedHomeSignal() {
+    homeFill = 255;
+    //this means we are done moving home
+    movingHome = false;
+  }
 
   void handleScroll(float scrollSpeed) {
     scrolling = true;
@@ -172,6 +192,7 @@ class Motor {
   void resetToHome() {
     angle = 0;
     mode = 0;
+    movingHome = true;
 
     sendMotorHomeOSC();
   }
@@ -306,5 +327,12 @@ void sendMotorsScrollEndedEvent() {
   for (int i = 0; i < numMotors; i ++) {
     Motor _motor = motors.get(i);
     _motor.scrollEnded();
+  }
+}
+
+void setMotorsToSceneState() {
+  for (int i = 0; i < numMotors; i ++) {
+    Motor _motor = motors.get(i);
+    
   }
 }
