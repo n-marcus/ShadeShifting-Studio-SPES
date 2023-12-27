@@ -2,7 +2,6 @@
 #define EEPROM_SIZE 4000
 
 
-bool isPlaying = false;
 
 void setupScenes() {
   // Initialize data for each motor in each scene
@@ -12,6 +11,19 @@ void setupScenes() {
       // scenes[i].motors[j].value = random(36000) / 100.;  // Set initial value to 0
       scenes[i].motors[j].mode = 0;
       scenes[i].motors[j].value = 0;  // Set initial value to 0
+    }
+  }
+}
+
+void checkActiveMotors() { 
+  //this function checks how many motors have send a heartbeat in the last 6 seconds or so 
+  int maxTimeOut = 6000;
+  long now = millis();
+  numActiveMotors = 0;
+  for (int motor = 0; motor < NUM_MOTORS; motor ++) { 
+    if (now - lastMotorHeartBeatMs[motor] < maxTimeOut) {
+      //if this motor has send a heartbeat within hte last 6 seconds, count it 
+      numActiveMotors ++;
     }
   }
 }

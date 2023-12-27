@@ -28,21 +28,42 @@ void checkLCD() {
   cycleCount++;
 
   if (cycleCount % 5000 == 0) {
+    
     lcd.clear();
     if (sceneMode == 0) {
       //if we are  busy waiting for the motors to reset
       lcd.setCursor(0, 0);
       lcd.print("Resetting");
+
+      //count how many motors told us they have resetted already
+      int numMotorsResetted = 0;
+      for (int i = 0; i < NUM_MOTORS; i++) {
+        if (motorsResetted[i]) {
+          numMotorsResetted++;
+        }
+      }
+
+      // Serial.println("Num motors resetted is " + String(numMotorsResetted));
       lcd.setCursor(0, 1);
-      // lcd.print(String(int((RESET_TIMEOUT - timeResetting) / 1000.) + "s"));
+      lcd.print((RESET_TIMEOUT - timeResetting) / 1000);
+      lcd.print("s, done:");
+      lcd.print(numMotorsResetted);
     } else if (sceneMode == 1) {
       lcd.setCursor(0, 0);
       lcd.print("Scene = " + String(currentScene));
       lcd.setCursor(0, 1);
-      String lcdString = String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000.) + " s");
-      Serial.println(TIME_PER_SCENE_MS - timeInCurrentScene);
-      // lcd.print(String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000.) + " s"));
+      String lcdString = String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000) + " s");
+      // Serial.println((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000);
+      lcd.print((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000);
+      lcd.print("s");
     }
+
+
+    checkActiveMotors();
+    lcd.setCursor(12, 1);
+    //this leaves 4 characters on the bottom right
+    lcd.print("ON");
+    lcd.print(numActiveMotors);
   }
 }
 

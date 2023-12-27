@@ -1,4 +1,4 @@
-#include <Button.h>
+
 
 // Set WiFi credentials
 #define WIFI_SSID "ShadeShifting"
@@ -22,6 +22,10 @@
 #include <OSCBundle.h>
 #include <OSCData.h>
 #include <elapsedMillis.h>
+#include <Button.h>
+#include "Adafruit_Debounce.h"
+
+#include <FastLED.h>
 
 elapsedMillis timeInCurrentScene;
 elapsedMillis timeResetting;
@@ -49,7 +53,14 @@ struct Scene {
 Scene scenes[NUM_SCENES];
 int currentScene = 0;
 int _currentScene = 0;
+bool isPlaying = false;
+
 int sceneMode = 0;  //0 means resetting, 1 means active
+
+bool motorsResetted[NUM_MOTORS];
+
+long lastMotorHeartBeatMs[NUM_MOTORS];
+int numActiveMotors = 0;
 
 // Create an array of Scene structs to hold data for 15 scenes and 25 motors each
 
@@ -64,6 +75,8 @@ void setup() {
   setupLCD();
   setupWifi();
   setupScenes();
+  setupLED();
+  setupButton();
   // saveScenesToEEPROM();
   loadScenesFromEEPROM();
   // printMotorData();
@@ -77,4 +90,6 @@ void loop() {
   checkScene();
   checkSerial();
   checkLCD();
+  checkLED();
+  checkButton();
 }

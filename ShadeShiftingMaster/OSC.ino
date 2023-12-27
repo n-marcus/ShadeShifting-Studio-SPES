@@ -2,7 +2,7 @@
 elapsedMillis sinceOSC;
 char receivedScene[300];
 
-bool motorsResetted[NUM_MOTORS];
+
 
 void sendRandomRotationToNode(int node) {
   OSCMessage msg("/moveToAngle");
@@ -54,6 +54,8 @@ void gotSceneOSC(OSCMessage &msg) {
 void gotHeartbeat(OSCMessage &msg) {
   int node = msg.getInt(0);
   // DEBUG_PRINT("Got heartbeat from node " + String(node));
+  //save the timestamp from this motors heartbeat
+  lastMotorHeartBeatMs[node] = millis();
 }
 
 void gotReachedHome(OSCMessage &msg) {
