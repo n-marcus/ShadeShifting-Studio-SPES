@@ -43,10 +43,11 @@ void setup() {
   setupWifi();
   setupScenes();
   // saveScenesToEEPROM();
-  // loadScenesFromEEPROM();
+  loadScenesFromEEPROM();
   // printMotorData();
 
   sendResetCommand();
+  start();
 }
 
 void loop() {

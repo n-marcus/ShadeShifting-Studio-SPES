@@ -8,6 +8,8 @@ int sceneMode = 0;  //0 means resetting, 1 means active
 elapsedMillis timeInCurrentScene;
 elapsedMillis timeResetting;
 
+bool isPlaying = false;
+
 void setupScenes() {
   // Initialize data for each motor in each scene
   for (int i = 0; i < NUM_SCENES; ++i) {
@@ -97,6 +99,13 @@ void printMotorData(bool all, int scene ) {
 
 
 void checkScene() {
+  if (!isPlaying) { 
+    //if we are not playing
+    // dont do anything 
+    return;
+  }
+
+  //if we are playing, check if we are resetting
   if (sceneMode == 1) {
     //if we are actively in a scene (not resetting)
     if (timeInCurrentScene > TIME_PER_SCENE_MS) {
@@ -118,7 +127,7 @@ void checkScene() {
 void setSceneActive() {
   sceneMode = 1;
   DEBUG_PRINT("Set scene " + String(currentScene) + " to active");
-  
+
   timeInCurrentScene = 0;
   for (int motor = 0; motor < NUM_MOTORS; motor++) {
     sendDataForMotorInScene(currentScene, motor);
@@ -161,4 +170,14 @@ void setMotorsResetted() {
   for (int i = 0; i < NUM_MOTORS; ++i) {
     motorsResetted[i] = false;
   }
+}
+
+void pause() {
+  isPlaying = false;
+
+}
+
+void start() { 
+  isPlaying = true;
+  sendResetCommand();
 }

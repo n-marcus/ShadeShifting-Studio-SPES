@@ -11,6 +11,16 @@ void checkSerial() {
       currentScene = receivedNumber;
       printMotorData(false, receivedNumber);
       setSceneActive();
+    } else if (receivedChar == 'p' || receivedChar == 'P') {
+      // If 'p' or 'P' is received
+      Serial.println("Received 'p'");
+      pause();
+      // Handle 'p' case here
+    } else if (receivedChar == 's' || receivedChar == 'S') {
+      // If 's' or 'S' is received
+      Serial.println("Received 's'");
+      start();
+      // Handle 's' case here
     }
   }
 }

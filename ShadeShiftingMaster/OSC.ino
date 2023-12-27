@@ -73,24 +73,27 @@ void sendDataForMotorInScene(int scene, int motor) {
   if (mode == 1) { 
     value = value * 1000.;
   }
-  DEBUG_PRINT("Sending OSC to " + String(motor) + " mode: " + String(mode) + " value: " + String(value));
+  // DEBUG_PRINT("Sending OSC to " + String(motor) + " mode: " + String(mode) + " value: " + String(value));
+  String OSCaddress = "";
 
   if (mode == 0) {
     OSCMessage msg("/moveToAngle");
     msg.add(motor);
-    msg.add(value);
+    msg.add(int(value));
     Udp.beginPacket(outIp, outPort);
     msg.send(Udp);
     Udp.endPacket();
     msg.empty();
+    DEBUG_PRINT("Send /moveToAngle " + String(motor) + " " + String(value));
   } else if (mode == 1) {
     OSCMessage msg("/setSpeedAndDirection");
     msg.add(motor);
-    msg.add(value);
+    msg.add(int(value));
     Udp.beginPacket(outIp, outPort);
     msg.send(Udp);
     Udp.endPacket();
     msg.empty();
+    DEBUG_PRINT("Send /setSpeedAndDirection " + String(motor) + " " + String(value));
   }
 }
 
@@ -132,8 +135,8 @@ void decodeSceneString(String input, int sceneNumber) {
     Serial.print(", Value: ");
     Serial.println(value);
 
-    if (sceneNumber > 0 && sceneNumber < NUM_SCENES) {
-      if (motorNumber > 0 && motorNumber < NUM_MOTORS) {
+    if (sceneNumber >= 0 && sceneNumber < NUM_SCENES) {
+      if (motorNumber >= 0 && motorNumber < NUM_MOTORS) {
         //save the received value to memory
         scenes[sceneNumber].motors[motorNumber].mode = mode;
         scenes[sceneNumber].motors[motorNumber].value = value;
