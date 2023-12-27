@@ -2,6 +2,8 @@ ArrayList<Motor> motors = new ArrayList<Motor>();
 int numMotors = 25;
 
 class Motor {
+  //mode 0 is angle mode
+  //mode 1 is speed mode
   int index, x, y, w, h;
   float angle;
 
@@ -250,7 +252,7 @@ class Motor {
     myMessage.add(index); /* add an int to the osc message */
     myMessage.add(int(speed * 1000));
     oscP5.send(myMessage, myRemoteLocation);
-    println("Sending message " + address + " " + index + " " + speed * 100);
+    println("Sending message " + address + " " + index + " " + speed * 1000);
     OSCIndicatorColor = 255;
   }
 }

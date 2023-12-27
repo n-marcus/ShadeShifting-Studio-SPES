@@ -1,9 +1,11 @@
 OscP5 oscP5;
 NetAddress myRemoteLocation;
+NetAddress masterLocation;
 
 void setupOSC() {
   oscP5 = new OscP5(this, 8001);
   myRemoteLocation = new NetAddress("255.255.255.255", 8888);
+  masterLocation = new NetAddress("255.255.255.255", 8001);
   oscP5.plug(this, "gotHeartBeat", "/heartbeat");
   oscP5.plug(this, "gotHomeSignal", "/reachedHome");
 }
@@ -58,4 +60,27 @@ void gotHeartBeat(int node) {
   catch (Exception e) {
     print("Could not send heartbeat to motor class " + node);
   }
+}
+
+
+void saveScenesToMaster() {
+  //string to describe one whole scene in to send over osc easily
+  String sceneString = "";
+
+  for (int i = 0; i < numMotors; i ++) {
+    // Accessing data from tables
+    MotorSceneData motor = scenes.get(currentScene).get("Motor" + i);
+    int motorMode = (motor.mode) == "angle" ? 0 : 1;
+    String motorString = "m" + i + "-" + motorMode + "-" + motor.value;
+    sceneString += motorString;
+    //println(motorString);
+  }
+  OscMessage myMessage = new OscMessage("/scene" );
+
+  myMessage.add(currentScene);
+
+  myMessage.add(sceneString); /* add an int to the osc message */
+  oscP5.send(myMessage, masterLocation);
+
+  println("I have send a message " + sceneString );
 }

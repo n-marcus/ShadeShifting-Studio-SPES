@@ -42,6 +42,11 @@ class ControlBar {
       .setPosition(500, (barHeight - bottomPadding) * 0.75)
       .setSize(90, 30)
       .setLabel("Load scenes");
+
+    cp5.addButton("saveScenesToMaster")
+      .setPosition(600, (barHeight - bottomPadding) * 0.75)
+      .setSize(90, 30)
+      .setLabel("Scenes to master");
   }
 
 

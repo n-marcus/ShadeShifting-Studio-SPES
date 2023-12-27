@@ -20,9 +20,9 @@ void checkOSC() {
 
 
     } else {
-      error = msg.getError();
-      Serial.print("Error receiving OSC message: ");
-      DEBUG_PRINT(error);
+      // error = msg.getError();
+      DEBUG_PRINT("Error receiving OSC message: ");
+      DEBUG_PRINT(msg.getError());
     }
   }
 }
