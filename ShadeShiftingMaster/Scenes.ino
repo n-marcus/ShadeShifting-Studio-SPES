@@ -1,7 +1,7 @@
 #include <EEPROM.h>
-
 #define NUM_SCENES 2
 #define NUM_MOTORS 25
+#define EEPROM_SIZE 4000
 
 // Define a struct for motor data
 struct MotorData {
@@ -21,15 +21,20 @@ void setupScenes() {
   // Initialize data for each motor in each scene
   for (int i = 0; i < NUM_SCENES; ++i) {
     for (int j = 0; j < NUM_MOTORS; ++j) {
-      scenes[i].motors[j].mode = round(random(1));  
-      scenes[i].motors[j].value = random(360);              // Set initial value to 0
+      scenes[i].motors[j].mode = round(random(1) + 0.5);
+      scenes[i].motors[j].value = random(36000) / 100.;  // Set initial value to 0
     }
   }
 }
 
 // Function to save scenes object to EEPROM
 void saveScenesToEEPROM() {
-  int addr = 0; // Start address in EEPROM
+  //Init EEPROM
+  EEPROM.begin(EEPROM_SIZE);
+  int addr = 0;  // Start address in EEPROM
+  Serial.println("Saving scenes to EEPROM");
+  Serial.println("Size per scene is " + String(sizeof(MotorData)));
+  Serial.println("Total size needed is " + String(sizeof(MotorData) * (NUM_SCENES * NUM_MOTORS)));
 
   for (int sceneIdx = 0; sceneIdx < NUM_SCENES; ++sceneIdx) {
     for (int motorIdx = 0; motorIdx < NUM_MOTORS; ++motorIdx) {
@@ -37,10 +42,14 @@ void saveScenesToEEPROM() {
       addr += sizeof(MotorData);
     }
   }
+  EEPROM.commit();
+  EEPROM.end();
 }
 
 void loadScenesFromEEPROM() {
-  int addr = 0; // Start address in EEPROM
+  int addr = 0;  // Start address in EEPROM
+    //Init EEPROM
+  EEPROM.begin(EEPROM_SIZE);
 
   for (int sceneIdx = 0; sceneIdx < NUM_SCENES; ++sceneIdx) {
     for (int motorIdx = 0; motorIdx < NUM_MOTORS; ++motorIdx) {
@@ -48,6 +57,7 @@ void loadScenesFromEEPROM() {
       addr += sizeof(MotorData);
     }
   }
+  EEPROM.end();
 }
 
 // Function to print mode and value for each motor in scenes
