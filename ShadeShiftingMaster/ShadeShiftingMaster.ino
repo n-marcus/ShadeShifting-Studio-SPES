@@ -1,3 +1,5 @@
+#include <Button.h>
+
 // Set WiFi credentials
 #define WIFI_SSID "ShadeShifting"
 #define WIFI_PASS "FridayDance2020!"
@@ -11,6 +13,8 @@
 //COMMENT DEZE REGEL WEG OM DEBUG MODE UIT TE ZETTEN
 #define DEBUG
 
+
+
 ///DONT EDIIT BELOW THIS
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
@@ -18,6 +22,9 @@
 #include <OSCBundle.h>
 #include <OSCData.h>
 #include <elapsedMillis.h>
+
+elapsedMillis timeInCurrentScene;
+elapsedMillis timeResetting;
 
 
 #ifdef DEBUG
@@ -41,6 +48,9 @@ struct Scene {
 
 Scene scenes[NUM_SCENES];
 int currentScene = 0;
+int _currentScene = 0;
+int sceneMode = 0;  //0 means resetting, 1 means active
+
 // Create an array of Scene structs to hold data for 15 scenes and 25 motors each
 
 WiFiUDP Udp;
@@ -51,13 +61,14 @@ const unsigned int localPort = 8001;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  setupLCD();
   setupWifi();
   setupScenes();
   // saveScenesToEEPROM();
   loadScenesFromEEPROM();
   // printMotorData();
-
   sendResetCommand();
+
   start();
 }
 
@@ -65,4 +76,5 @@ void loop() {
   checkOSC();
   checkScene();
   checkSerial();
+  checkLCD();
 }

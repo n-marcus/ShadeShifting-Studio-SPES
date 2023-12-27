@@ -6,6 +6,12 @@ void setupWifi() {
   Serial.println(WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Connecting to ");
+  lcd.setCursor(0, 1);
+  lcd.print(WIFI_SSID);
+
   bool LEDOn = true;
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -27,4 +33,11 @@ void setupWifi() {
 #else
   Serial.println(Udp.localPort());
 #endif
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Connected to ");
+  lcd.setCursor(0, 1);
+  lcd.print(WIFI_SSID);
+  delay(500);
 }

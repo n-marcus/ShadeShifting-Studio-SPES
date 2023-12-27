@@ -2,19 +2,14 @@
 #define EEPROM_SIZE 4000
 
 
-int sceneMode = 0;  //0 means resetting, 1 means active
-
-elapsedMillis timeInCurrentScene;
-elapsedMillis timeResetting;
-
 bool isPlaying = false;
 
 void setupScenes() {
   // Initialize data for each motor in each scene
   for (int i = 0; i < NUM_SCENES; ++i) {
     for (int j = 0; j < NUM_MOTORS; ++j) {
-      scenes[i].motors[j].mode = random(2);
-      scenes[i].motors[j].value = random(36000) / 100.;  // Set initial value to 0
+      // scenes[i].motors[j].mode = random(2);
+      // scenes[i].motors[j].value = random(36000) / 100.;  // Set initial value to 0
       scenes[i].motors[j].mode = 0;
       scenes[i].motors[j].value = 0;  // Set initial value to 0
     }
@@ -117,6 +112,8 @@ void checkScene() {
       //if we have been waiting for too long
       DEBUG_PRINT("We have been resetting for too long, set the current scene to be active");
       setSceneActive();
+
+      
     } else {
       // DEBUG_PRINT("Waiting for all nodes to be resetted");
     }
@@ -131,6 +128,8 @@ void setSceneActive() {
   for (int motor = 0; motor < NUM_MOTORS; motor++) {
     sendDataForMotorInScene(currentScene, motor);
   }
+
+  setLCDCurrentScene();
 }
 
 void sendResetCommand() {
@@ -153,6 +152,7 @@ void sendResetCommand() {
   timeResetting = 0;
 
   setMotorsResetted();
+
 }
 
 void goToNextScene() {
@@ -161,6 +161,8 @@ void goToNextScene() {
   if (currentScene >= NUM_SCENES) {
     currentScene = 0;
   }
+
+  setLCDResetting();
 
   sendResetCommand();
 }

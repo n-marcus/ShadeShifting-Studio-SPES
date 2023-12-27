@@ -1,0 +1,60 @@
+#include <Arduino.h>
+#include <Wire.h>
+#include "LiquidCrystal_PCF8574.h"
+
+
+TwoWire Wire_1 = TwoWire();
+
+int cycleCount = 0;
+
+LiquidCrystal_PCF8574 lcd(0x27);  // set the LCD address to 0x27
+char lcdDisplay[2][16];           // 4 lines of 20 character buffer
+
+void setupLCD() {
+  Wire_1.begin(D1, D2);                 // custom i2c port on ESP
+  Wire_1.setClock(100000);              // standard 100kHz speed
+  Wire_1.setClockStretchLimit(200000);  // some devices might need clock stretching
+  lcd.begin(20, 4, Wire_1);
+  lcd.setBacklight(255);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("morgen schat! <3");
+  delay(1500);
+  lcd.clear();
+}
+
+void checkLCD() {
+  cycleCount++;
+
+  if (cycleCount % 5000 == 0) {
+    lcd.clear();
+    if (sceneMode == 0) {
+      //if we are  busy waiting for the motors to reset
+      lcd.setCursor(0, 0);
+      lcd.print("Resetting");
+      lcd.setCursor(0, 1);
+      // lcd.print(String(int((RESET_TIMEOUT - timeResetting) / 1000.) + "s"));
+    } else if (sceneMode == 1) {
+      lcd.setCursor(0, 0);
+      lcd.print("Scene = " + String(currentScene));
+      lcd.setCursor(0, 1);
+      String lcdString = String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000.) + " s");
+      Serial.println(TIME_PER_SCENE_MS - timeInCurrentScene);
+      // lcd.print(String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000.) + " s"));
+    }
+  }
+}
+
+void setLCDResetting() {
+  // lcd.clear();
+  // lcd.setCursor(0, 0);
+  // lcd.print("Resetting nodes...");
+}
+
+
+void setLCDCurrentScene() {
+  // lcd.clear();
+  // lcd.setCursor(0, 0);
+  // lcd.print("Scene: " + String(currentScene));
+}
