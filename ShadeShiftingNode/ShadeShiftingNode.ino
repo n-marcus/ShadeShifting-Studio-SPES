@@ -7,8 +7,14 @@
 #define WIFI_SSID "ShadeShifting"
 #define WIFI_PASS "FridayDance2020!"
 
+//Dit is de acceleratie 
 float speedAcceleration = 0.1;
 
+//Licht legenda: 
+// GEEL = HOMING
+// PAARSE KNIPPER = HEARTBEAT
+// BLAUWE KNIPPER = WIFI ZOEKEN
+// GROEN = WIFI IS VERBONDEN
 
 #include <FastLED.h>
 #include <AccelStepper.h>
