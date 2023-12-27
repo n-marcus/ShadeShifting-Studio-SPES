@@ -1,3 +1,15 @@
+//EDIT STUFF HERE
+#define NODE_NUMBER 2
+
+#define DEBUG
+
+// Set WiFi credentials
+#define WIFI_SSID "ShadeShifting"
+#define WIFI_PASS "FridayDance2020!"
+
+float speedAcceleration = 0.1;
+
+
 #include <FastLED.h>
 #include <AccelStepper.h>
 #include <ESP8266WiFi.h>
@@ -9,10 +21,7 @@
 #include <OSCMessage.h>
 
 
-//EDIT STUFF HERE
-#define NODE_NUMBER 2
 
-// #define DEBUG
 #ifdef DEBUG
 #define DEBUG_PRINT(x) Serial.println(x)
 #else
@@ -20,11 +29,9 @@
 #endif
 
 #define DEFAULT_ACCELERATION 500
-float speedAcceleration = 0.1;
 
-// Set WiFi credentials
-#define WIFI_SSID "ShadeShifting"
-#define WIFI_PASS "FridayDance2020!"
+
+
 
 //STOP EDITING STUFF BELOW HERE
 

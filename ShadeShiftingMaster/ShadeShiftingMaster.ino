@@ -1,3 +1,17 @@
+// Set WiFi credentials
+#define WIFI_SSID "ShadeShifting"
+#define WIFI_PASS "FridayDance2020!"
+
+//HIER KAN JE INSTELLEN HOELANG EEN SCENE DUURT
+#define TIME_PER_SCENE_MS 20 * 1000
+
+//DITI S HOE LANG IE WACHT TOT ALLE NODES ZIJN GERESETTED
+#define RESET_TIMEOUT 20 * 1000
+
+//COMMENT DEZE REGEL WEG OM DEBUG MODE UIT TE ZETTEN
+#define DEBUG
+
+///DONT EDIIT BELOW THIS
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
@@ -5,10 +19,7 @@
 #include <OSCData.h>
 #include <elapsedMillis.h>
 
-// Set WiFi credentials
-#define WIFI_SSID "ShadeShifting"
-#define WIFI_PASS "FridayDance2020!"
-#define DEBUG
+
 #ifdef DEBUG
 #define DEBUG_PRINT(x) Serial.println(x)
 #else

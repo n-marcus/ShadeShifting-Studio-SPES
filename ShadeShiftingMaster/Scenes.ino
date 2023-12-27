@@ -1,8 +1,7 @@
 #include <EEPROM.h>
 #define EEPROM_SIZE 4000
 
-#define TIME_PER_SCENE_MS 20 * 1000
-#define RESET_TIMEOUT 20 * 1000
+
 int sceneMode = 0;  //0 means resetting, 1 means active
 
 elapsedMillis timeInCurrentScene;
