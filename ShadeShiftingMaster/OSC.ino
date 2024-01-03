@@ -15,6 +15,11 @@ void sendRandomRotationToNode(int node) {
 }
 
 void checkOSC() {
+  if (cycleCount % 10000 == 0) {
+    sendPCStatusUpdate();
+  }
+
+
   OSCMessage msg;
   int size = Udp.parsePacket();
 
@@ -40,6 +45,41 @@ void checkOSC() {
     }
   }
 }
+
+void sendPCStatusUpdate() {
+  // Serial.println("Sending OSC update to pc");
+  int timeLeft = 0;
+  if (sceneMode == 1) {
+
+    timeLeft = (TIME_PER_SCENE_MS - timeInCurrentScene) / 1000;
+  } else {
+
+    timeLeft = (RESET_TIMEOUT - timeResetting) / 1000;
+  }
+
+
+
+  //count how many motors told us they have resetted already
+  int numMotorsResetted = 0;
+  for (int i = 0; i < NUM_MOTORS; i++) {
+    if (motorsResetted[i]) {
+      numMotorsResetted++;
+    }
+  }
+
+  OSCMessage msg("/masterNodeUpdate");
+  msg.add(currentScene);
+  msg.add(sceneMode);
+  msg.add(int(isPlaying));
+  msg.add(timeLeft);
+  msg.add(numMotorsResetted);
+  Udp.beginPacket(outIp, outPort);
+  msg.send(Udp);
+  Udp.endPacket();
+  msg.empty();
+  DEBUG_PRINT("Send /masterNodeUpdate to pc ");
+}
+
 
 
 void gotSceneOSC(OSCMessage &msg) {
@@ -72,7 +112,7 @@ void sendDataForMotorInScene(int scene, int motor) {
   int mode = scenes[scene].motors[motor].mode;
   float value = scenes[scene].motors[motor].value;
 
-  if (mode == 1) { 
+  if (mode == 1) {
     value = value * 1000.;
   }
   // DEBUG_PRINT("Sending OSC to " + String(motor) + " mode: " + String(mode) + " value: " + String(value));
@@ -143,7 +183,7 @@ void decodeSceneString(String input, int sceneNumber) {
         scenes[sceneNumber].motors[motorNumber].mode = mode;
         scenes[sceneNumber].motors[motorNumber].value = value;
       }
-    } else { 
+    } else {
       Serial.println("You tried writing to scene " + String(sceneNumber) + " and motor " + String(motorNumber) + " and I cannot allow that my brother in Christ");
     }
 

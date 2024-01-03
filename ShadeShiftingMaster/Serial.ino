@@ -12,7 +12,7 @@ void checkSerial() {
       printMotorData(false, receivedNumber);
       setSceneActive();
     } else if (receivedChar == 'p' || receivedChar == 'P') {
-      // If 'p' or 'P' is received
+      // If 'p' or 'P' is receive
       Serial.println("Received 'p'");
       pause();
       // Handle 'p' case here

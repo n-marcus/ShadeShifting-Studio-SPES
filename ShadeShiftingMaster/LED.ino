@@ -10,9 +10,12 @@
 CRGB leds[NUM_LEDS];
 
 void setupLED() {
+  Serial.println("Setting up LED");
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
   leds[0] = CRGB::Blue;
   FastLED.show();
+  Serial.println("LED should be blue");
+  delay(100);
 }
 
 void checkLED() {

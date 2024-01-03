@@ -8,7 +8,7 @@
 #define TIME_PER_SCENE_MS 20 * 1000
 
 //DITI S HOE LANG IE WACHT TOT ALLE NODES ZIJN GERESETTED
-#define RESET_TIMEOUT 20 * 1000
+#define RESET_TIMEOUT 8 * 1000
 
 //COMMENT DEZE REGEL WEG OM DEBUG MODE UIT TE ZETTEN
 #define DEBUG
@@ -74,17 +74,20 @@ const unsigned int localPort = 8001;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  delay(100);
+  Serial.println("");
+  Serial.println("I live");
+  setupLED();
   setupLCD();
   setupWifi();
   setupScenes();
-  setupLED();
   setupButton();
-  // saveScenesToEEPROM();
+  // // saveScenesToEEPROM();
   loadScenesFromEEPROM();
-  // printMotorData();
+  // // printMotorData();
   sendResetCommand();
 
-  start();
+  // start();
 }
 
 void loop() {

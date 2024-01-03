@@ -1,1024 +1,4 @@
 {
-  "scene24": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene23": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene22": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene21": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene20": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene19": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene18": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene17": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene16": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
-  "scene15": {
-    "Motor4": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor3": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor2": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor1": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor0": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor20": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor21": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor22": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor23": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor24": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor9": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor8": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor10": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor7": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor11": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor6": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor12": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor5": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor13": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor14": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor15": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor16": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor17": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor18": {
-      "mode": "angle",
-      "value": 0
-    },
-    "Motor19": {
-      "mode": "angle",
-      "value": 0
-    }
-  },
   "scene14": {
     "Motor4": {
       "mode": "angle",
@@ -1939,24 +919,24 @@
   },
   "scene5": {
     "Motor4": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor3": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor2": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor1": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",
@@ -2045,20 +1025,20 @@
       "value": 0
     },
     "Motor3": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor2": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor1": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",
@@ -2151,16 +1131,16 @@
       "value": 0
     },
     "Motor2": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor1": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",
@@ -2257,12 +1237,12 @@
       "value": 0
     },
     "Motor1": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 100
     },
     "Motor20": {
       "mode": "angle",
@@ -2364,7 +1344,7 @@
     },
     "Motor0": {
       "mode": "speed",
-      "value": 100
+      "value": 9.999984741210938
     },
     "Motor20": {
       "mode": "angle",
@@ -2380,11 +1360,11 @@
     },
     "Motor23": {
       "mode": "angle",
-      "value": 64
+      "value": 0
     },
     "Motor24": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor9": {
       "mode": "angle",
@@ -2404,19 +1384,19 @@
     },
     "Motor11": {
       "mode": "angle",
-      "value": 48
+      "value": 0
     },
     "Motor6": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor12": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor5": {
       "mode": "angle",
-      "value": 57
+      "value": 0
     },
     "Motor13": {
       "mode": "angle",
@@ -2436,11 +1416,11 @@
     },
     "Motor17": {
       "mode": "angle",
-      "value": 43
+      "value": 0
     },
     "Motor18": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor19": {
       "mode": "angle",
@@ -2449,36 +1429,36 @@
   },
   "scene0": {
     "Motor4": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 22
     },
     "Motor3": {
       "mode": "angle",
       "value": 0
     },
     "Motor2": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 9.999984741210938
     },
     "Motor1": {
       "mode": "angle",
       "value": 0
     },
     "Motor0": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 54.99991226196289
     },
     "Motor20": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor21": {
       "mode": "angle",
       "value": 0
     },
     "Motor22": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": 4.999984264373779
     },
     "Motor23": {
       "mode": "angle",
@@ -2489,20 +1469,20 @@
       "value": 0
     },
     "Motor9": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor8": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor10": {
       "mode": "angle",
       "value": 0
     },
     "Motor7": {
-      "mode": "angle",
-      "value": 0
+      "mode": "speed",
+      "value": -5.000015735626221
     },
     "Motor11": {
       "mode": "angle",
@@ -2514,15 +1494,15 @@
     },
     "Motor12": {
       "mode": "speed",
-      "value": 100
+      "value": 4.99990701675415
     },
     "Motor5": {
       "mode": "angle",
       "value": 0
     },
     "Motor13": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor14": {
       "mode": "angle",
@@ -2533,12 +1513,12 @@
       "value": 0
     },
     "Motor16": {
-      "mode": "speed",
-      "value": 100
+      "mode": "angle",
+      "value": 0
     },
     "Motor17": {
       "mode": "angle",
-      "value": 0
+      "value": 170.70013427734375
     },
     "Motor18": {
       "mode": "angle",

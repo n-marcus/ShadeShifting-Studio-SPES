@@ -8,6 +8,8 @@ void setupOSC() {
   masterLocation = new NetAddress("255.255.255.255", 8001);
   oscP5.plug(this, "gotHeartBeat", "/heartbeat");
   oscP5.plug(this, "gotHomeSignal", "/reachedHome");
+  oscP5.plug(this, "masterNodeUpdate", "/masterNodeUpdate");
+  
 }
 
 void mouseDragged() {
@@ -18,6 +20,10 @@ void mouseDragged() {
   oscP5.send(myMessage, myRemoteLocation);
 
   println("I have send a message " + mouseX );
+}
+
+void masterNodeUpdate(int currentScene, int sceneMode) { 
+  println("Got master node update "  + currentScene + " in mode " + sceneMode);
 }
 
 void sendResetToHomeOSC() {
@@ -32,10 +38,10 @@ void oscEvent(OscMessage theOscMessage) {
   //print(" addrpattern: "+theOscMessage.addrPattern());
 
   //if (theOscMessage.addrPattern() == "heartBeat") {
-  //  println(" typetag: "+theOscMessage.typetag());
-  //  if (theOscMessage.typetag() == 'i') {
-  //    int node = theOscMessage.get()
-  //  }
+    //printlnln(" typetag: "+theOscMessage.typetag());
+    //if (theOscMessage.typetag() == i') {
+      //int node = theOscMessage.get()
+    //}
   //}
 }
 

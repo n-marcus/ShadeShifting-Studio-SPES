@@ -15,15 +15,15 @@ void setupScenes() {
   }
 }
 
-void checkActiveMotors() { 
-  //this function checks how many motors have send a heartbeat in the last 6 seconds or so 
+void checkActiveMotors() {
+  //this function checks how many motors have send a heartbeat in the last 6 seconds or so
   int maxTimeOut = 6000;
   long now = millis();
   numActiveMotors = 0;
-  for (int motor = 0; motor < NUM_MOTORS; motor ++) { 
+  for (int motor = 0; motor < NUM_MOTORS; motor++) {
     if (now - lastMotorHeartBeatMs[motor] < maxTimeOut) {
-      //if this motor has send a heartbeat within hte last 6 seconds, count it 
-      numActiveMotors ++;
+      //if this motor has send a heartbeat within hte last 6 seconds, count it
+      numActiveMotors++;
     }
   }
 }
@@ -71,7 +71,7 @@ void loadScenesFromEEPROM() {
 }
 
 // Function to print mode and value for each motor in scenes
-void printMotorData(bool all, int scene ) {
+void printMotorData(bool all, int scene) {
   if (all) {
 
     for (int sceneIdx = 0; sceneIdx < NUM_SCENES; ++sceneIdx) {
@@ -105,9 +105,9 @@ void printMotorData(bool all, int scene ) {
 
 
 void checkScene() {
-  if (!isPlaying) { 
+  if (!isPlaying) {
     //if we are not playing
-    // dont do anything 
+    // dont do anything
     return;
   }
 
@@ -125,7 +125,7 @@ void checkScene() {
       DEBUG_PRINT("We have been resetting for too long, set the current scene to be active");
       setSceneActive();
 
-      
+
     } else {
       // DEBUG_PRINT("Waiting for all nodes to be resetted");
     }
@@ -149,11 +149,13 @@ void sendResetCommand() {
   //say we are now in reset mode
   sceneMode = 0;
 
-  for (int i = 0; i < NUM_MOTORS; i++) {
 
-    //send an OSC message to all nodes
-    OSCMessage msg("/home");
+  Serial.println("Now sending all to move to 0 degrees, then waiting a bit");
+  //first we set all the motors to 0 degrees
+  for (int i = 0; i < NUM_MOTORS; i++) {
+    OSCMessage msg("/moveToAngle");
     msg.add(i);
+    msg.add(0.0);
     Udp.beginPacket(outIp, outPort);
 
     msg.send(Udp);
@@ -161,10 +163,28 @@ void sendResetCommand() {
     msg.empty();
   }
 
+  //wait a while to have them move to 0
+  delay(5000);
+
+  Serial.println("Now sending home message");
+  for (int i = 0; i < NUM_MOTORS; i++) {
+    for (int bangMeHarder = 0; bangMeHarder < 3; bangMeHarder++) {
+
+      //send an OSC message to all nodes
+      OSCMessage msg("/home");
+      msg.add(i);
+      Udp.beginPacket(outIp, outPort);
+
+      msg.send(Udp);
+      Udp.endPacket();
+      msg.empty();
+      delay(1);
+    }
+  }
+
   timeResetting = 0;
 
   setMotorsResetted();
-
 }
 
 void goToNextScene() {
@@ -191,7 +211,7 @@ void pause() {
   sendResetCommand();
 }
 
-void start() { 
+void start() {
   timeResetting = RESET_TIMEOUT;
   timeInCurrentScene = 0;
   isPlaying = true;

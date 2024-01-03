@@ -10,12 +10,13 @@ LiquidCrystal_PCF8574 lcd(0x27);  // set the LCD address to 0x27
 char lcdDisplay[2][16];           // 4 lines of 20 character buffer
 
 void setupLCD() {
+  Serial.println("Starting LCD display setup");
   Wire_1.begin(D1, D2);                 // custom i2c port on ESP
   Wire_1.setClock(100000);              // standard 100kHz speed
   Wire_1.setClockStretchLimit(200000);  // some devices might need clock stretching
   lcd.begin(20, 4, Wire_1);
   lcd.setBacklight(255);
-
+  Serial.println("Displaying Morgen schat...");
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("morgen schat! <3");

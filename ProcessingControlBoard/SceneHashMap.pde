@@ -3,7 +3,7 @@ import java.util.HashMap;
 import processing.data.JSONObject;
 ArrayList<HashMap<String, MotorSceneData>> scenes = new ArrayList<>();
 
-int numScenes =25;
+int numScenes = 15;
 
 int currentScene = 0;
 
