@@ -5,7 +5,6 @@
 
 TwoWire Wire_1 = TwoWire();
 
-int cycleCount = 0;
 
 LiquidCrystal_PCF8574 lcd(0x27);  // set the LCD address to 0x27
 char lcdDisplay[2][16];           // 4 lines of 20 character buffer
@@ -28,7 +27,7 @@ void checkLCD() {
   cycleCount++;
 
   if (cycleCount % 5000 == 0) {
-    
+
     lcd.clear();
     if (sceneMode == 0) {
       //if we are  busy waiting for the motors to reset
@@ -45,19 +44,31 @@ void checkLCD() {
 
       // Serial.println("Num motors resetted is " + String(numMotorsResetted));
       lcd.setCursor(0, 1);
-      lcd.print((RESET_TIMEOUT - timeResetting) / 1000);
-      lcd.print("s, done:");
+      if (isPlaying) {
+        //only display remaining time if we are actually playing, otherwise it doesnt matter anyway
+        int resetTime = (RESET_TIMEOUT - timeResetting) / 1000;
+        lcd.print(resetTime);
+        lcd.print("s");
+      }
+      lcd.print(" done:");
       lcd.print(numMotorsResetted);
     } else if (sceneMode == 1) {
       lcd.setCursor(0, 0);
       lcd.print("Scene = " + String(currentScene));
       lcd.setCursor(0, 1);
-      String lcdString = String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000) + " s");
+      // String lcdString = String(int((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000) + " s");
       // Serial.println((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000);
-      lcd.print((TIME_PER_SCENE_MS - timeInCurrentScene) / 1000);
-      lcd.print("s");
+
+      int timeLeftInScene = (TIME_PER_SCENE_MS - timeInCurrentScene) / 1000;
+      if (isPlaying) {
+        lcd.print(timeLeftInScene);
+        lcd.print("s");
+      }
     }
 
+    String playingStatus = (isPlaying) ? ">" : "|";
+    lcd.setCursor(15, 0);
+    lcd.print(playingStatus);
 
     checkActiveMotors();
     lcd.setCursor(12, 1);

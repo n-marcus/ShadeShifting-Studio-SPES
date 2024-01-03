@@ -55,6 +55,8 @@ int currentScene = 0;
 int _currentScene = 0;
 bool isPlaying = false;
 
+int cycleCount = 0;
+
 int sceneMode = 0;  //0 means resetting, 1 means active
 
 bool motorsResetted[NUM_MOTORS];

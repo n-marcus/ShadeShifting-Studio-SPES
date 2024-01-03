@@ -14,14 +14,17 @@ void checkButton() {
   //   Serial.println("BUTTON PRESSED");
   // }
 
-  button.update();
+  if (cycleCount % 100 == 0) {
 
-  if (button.justPressed()) {
-    Serial.println("Button was just pressed!");
-    if (isPlaying) {
-      pause();
-    } else {
-      start();
+    button.update();
+
+    if (button.justPressed()) {
+      Serial.println("Button was just pressed!");
+      if (isPlaying) {
+        pause();
+      } else {
+        start();
+      }
     }
   }
 

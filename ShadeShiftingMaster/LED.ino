@@ -11,7 +11,7 @@ CRGB leds[NUM_LEDS];
 
 void setupLED() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
-  leds[0] = CRGB::Yellow;
+  leds[0] = CRGB::Blue;
   FastLED.show();
 }
 
@@ -21,7 +21,11 @@ void checkLED() {
 
   if (cycleCount % 711 == 0) {
     if (isPlaying) {
-      leds[0] = CRGB::Green;
+      if (sceneMode == 0) {
+        leds[0] = CRGB::Yellow;
+      } else if (sceneMode == 1) {
+        leds[0] = CRGB::Green;
+      }
     } else {
       if (millis() % 1000 < 500) {
         leds[0] = CRGB::Red;

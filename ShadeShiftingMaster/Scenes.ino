@@ -188,9 +188,12 @@ void setMotorsResetted() {
 void pause() {
   isPlaying = false;
 
+  sendResetCommand();
 }
 
 void start() { 
+  timeResetting = RESET_TIMEOUT;
+  timeInCurrentScene = 0;
   isPlaying = true;
-  sendResetCommand();
+  // sendResetCommand();
 }
